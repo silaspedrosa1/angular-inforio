@@ -168,6 +168,35 @@ Referência: _@UzumakiArtanis https://pt.stackoverflow.com/a/212181_
 
 ### DRY e as abstracões prematuras
 
+[GEORGE: diagrama com setas]
+Como gerar uma abstracão prematura e se arrepender depois:
+
+1. Comece a resolver um problema grande
+2. Encontre vários problemas menores que parecem ser repetidos e terem a mesma natureza
+3. Faca uma abstracão que evita repeticão de código
+4. Ache um sub problema ligeiramente diferente e faca uma alteraca para acomodá-lo
+5. Repita o passo 4 até se arrepender
+
+Inserir bibliotecas, frameworks, padrões e arquiteturas pode gerar abstracões prematuras, _e.g._ Redux, RxJS, NgRx.
+
+Abstracões podem ser maravilhosas! -> legibilidade, reducão de complexidade, reducão de código.
+
+O que fazer, então?
+
+EQUILÍBRIO!
+
+Na dúvida, não adote uma nova ferramenta, arquitetura, framework.
+
+Na dúvida, não abstraia.
+
+Às vezes, esperar a dor doer, o incômodo incomodar, o problema realmente virar um problema, é melhor.
+
+O custo de uma abstracão prematura pode ser muito maior do que ter que tratar um código duplicado.
+
+> The goal is working towards that seemingly impossible balance of just enough abstractions, introduced at just the right time. - @thisdotmedia
+
+Referência: _https://medium.com/@thisdotmedia/the-cost-of-premature-abstraction-b5d71ffd6400_
+
 ## 2.2. Composição vs Herança (45min)
 
 ### O que danado é composicão
