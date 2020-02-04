@@ -130,9 +130,33 @@ Pragmaticamente: Bootstrap, NG-Bootstrap e vamo já pensando na transicão e nos
 
 ### Spoiler: sempre faca (o) bem!
 
+Referência: _https://www.toptal.com/software/software-entropy-explained_
+
 ## 2.1. Redux, MVC, MVVM, BLoC, Facades (2h)
 
 ### Um balaio de arquitetura
+
+Redux
+![](assets/redux-architecture.jpg)
+BLoC
+![](assets/bloc.png)
+MVC
+![](assets/mvc.png)
+MVVM
+![](assets/mvvm.png)
+
+Definicões:
+
+> **MVC**:
+> Model-View-Controller (MVC) é um padrão arquitetônico usado na engenharia de software em que o padrão isola a "lógica de domínio" (a lógica do aplicativo para o usuário) da interface do usuário (entrada e apresentação), permitindo o desenvolvimento independente, teste e manutenção de cada (separação de preocupações).
+
+> **MVP**:
+> Model-view-presenter (MVP) é uma derivada do padrão de software model-view-controller, usado principalmente para construir interfaces de usuário. No MVP, o apresentador assume a funcionalidade do "middle-man" (correspondendo ao controller de aplicação no MVC). Além disso, a view é responsável por manipular os eventos da UI (como mouse down, key down, etc.), que costumava ser o trabalho do controller. Eventualmente, o model se torna estritamente um modelo de domínio.
+
+> **MVVM**:
+> Model-View-ViewModel (MVVM) é um padrão de design arquitetônico para implementação de interfaces de usuário. Seu foco principal é a separação de preocupação entre a View (UI) e o Model (Dados) usando uma camada intermediária chamada ViewModel para melhorar a capacidade de gerenciamento, escalabilidade e testabilidade.
+
+Referência: _@UzumakiArtanis https://pt.stackoverflow.com/a/212181_
 
 ### Um balaio de prós e contras, vantagens e desvantagens
 
