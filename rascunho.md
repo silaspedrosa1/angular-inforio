@@ -205,6 +205,8 @@ Referência: _https://medium.com/@thisdotmedia/the-cost-of-premature-abstraction
 
 ### E aí?
 
+Services!
+
 ## 2.3. Async programming (30min)
 
 ### A vida é assíncrona, a web também
@@ -259,7 +261,7 @@ Referência: _https://medium.com/@thisdotmedia/the-cost-of-premature-abstraction
 
 ### View sempre preparada para erros
 
-### Tratamento defaul e tratamento específico
+### Tratamento default e tratamento específico
 
 ## 2.7. Comunicação com a API (45min)
 
