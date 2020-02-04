@@ -109,6 +109,23 @@ Pragmaticamente: Bootstrap, NG-Bootstrap e vamo já pensando na transicão e nos
 
 ### Software, entropia, T0
 
+> The second law of thermodynamics, in principle, states that a closed system's disorder cannot be reduced, it can only remain unchanged or increase. A measure of this disorder is entropy. This law also seems plausible for software systems; as a system is modified, its disorder, or entropy, tends to increase. This is known as software entropy. - [Wikipedia](https://en.wikipedia.org/wiki/Software_entropy)
+
+> Software entropy is the risk that changing existing software will result in unexpected problems, unmet objectives, or both.
+
+> It is the invisible hand that breaks component interactions that weren’t in scope, causes production servers to inexplicably crash, and withholds a timely and cost-effective hotfix.
+
+- Expectativas de cumprimento de sprints e ciclos de desenvolvimento
+  ![Entropia by Toptal](./assets/totpal-entropy.png)
+  > Many systems with high levels of entropy rely on specific individuals, particularly if there are junior members of the development team.
+- Se a expectativa de vida do software é baixa, a probabilidade da entropia do software impactar negativamente alguma coisa é baixa
+- Falta de conhecimento é uma das principais causas de entropia (uma pessoa saindo do time é conhecimento indo embora)
+- Todo ciclo de desenvolvimento tem uma probabilidade de aumentar a entropia (nunca de diminuir)
+- Se focarmos sempre em refatoracão, estaremos sempre mitigando os problemas causados pelo ciclo anterior
+- Se focarmos em cultura (conhecimento!), diminuiremos a probabilidade dos próximos ciclos aumentarem a entropia
+
+### [GEORGE! frase de efeito aqui] Cedo ou tarde, adicionar uma mudanca será mais caro que refazer o sistema inteiro
+
 ### Duas opcões: fazer ou fazer bem - quando usar cada uma
 
 ### Spoiler: sempre faca (o) bem!
