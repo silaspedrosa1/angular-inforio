@@ -1,0 +1,22 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/type';
+@import '~bootstrap/scss/images';
+@import '~bootstrap/scss/code';
+@import '~bootstrap/scss/grid';
+
+@import './variables';
+@import './typography';
+@import './elements/selects';
+@import './elements/buttons';
+@import './elements/checkboxes';
+@import './elements/nav-tabs';
+@import './elements/modal';
+@import './elements/dropdown';
+@import './elements/tables';
+@import './colors/background';
+
+@import '~bootstrap/scss/bootstrap';

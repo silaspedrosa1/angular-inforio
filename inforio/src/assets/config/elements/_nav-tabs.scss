@@ -1,0 +1,30 @@
+@import '../variables';
+
+.tabs-vagalume {
+  ul {
+    border-bottom: 0;
+    padding-bottom: 2rem;
+  }
+
+  a {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  li {
+    padding-right: 1rem;
+  }
+
+  .nav-link.active {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid $primary !important;
+    color: $primary !important;
+    font-weight: 500;
+  }
+
+  .nav-link {
+    color: $info !important;
+  }
+}

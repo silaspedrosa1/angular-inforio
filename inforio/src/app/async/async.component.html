@@ -1,1 +1,11 @@
-<p>async works!</p>
+<h1>Devolução</h1>
+<button class="btn btn-primary" (click)="read()">Ler código de barras</button>
+<ngb-alert *ngIf="barcodeRequestError" type="danger" (close)="barcodeRequestError = false"
+  >Erro ao buscar por código de barras</ngb-alert
+>
+<ngb-alert *ngIf="devolutionRequestSuccess" type="success" (close)="devolutionRequestSuccess = false"
+  >Livros devolvidos com sucesso!</ngb-alert
+>
+<ngb-alert *ngIf="devolutionRequestError" type="danger" (close)="devolutionRequestError = false"
+  >Erro ao devolver livros</ngb-alert
+>

@@ -5,18 +5,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AsyncComponent } from './async/async.component';
+import { fakeBackendProvider } from './data/interceptors/backend.interceptor';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PossibilitiesComponent } from './async/possibilities/possibilities.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AmountComponent } from './async/amount/amount.component';
+import { ConfirmationComponent } from './async/confirmation/confirmation.component';
+import { BarcodeComponent } from './async/barcode/barcode.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AsyncComponent
+    AsyncComponent,
+    PossibilitiesComponent,
+    AmountComponent,
+    ConfirmationComponent,
+    BarcodeComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
+  providers: [fakeBackendProvider],
+  bootstrap: [AppComponent],
+  entryComponents: [PossibilitiesComponent, BarcodeComponent, AmountComponent, ConfirmationComponent]
 })
-export class AppModule { }
+export class AppModule {}
