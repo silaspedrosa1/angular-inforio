@@ -1,4 +1,4 @@
-### Criando o app
+# Criando o app
 
 ```
 ng new info rio
@@ -11,7 +11,7 @@ No app.module:
 imports: [NgbModule, ...],
 ```
 
-### Husky
+# Husky
 
 npm install husky prettier pretty-quick --save-dev
 
@@ -55,7 +55,7 @@ criar arquivo .prettierrc:
 
 instalar a extensão do prettier no vs code!!
 
-### Rotas e componentes iniciais
+# Rotas e componentes iniciais
 
 No app.component.html:
 
@@ -120,7 +120,7 @@ Adicionar link para async na home:
 
 - add esquema css (funcional primeiro, aos poucos migrando para SMACSS, BEM, etc.)
 
-### Fake backend
+# Fake backend
 
 Criar o arquivo interceptor:
 
@@ -225,7 +225,7 @@ Colocar o provider do interceptor no AppModule
 export class AppModule {}
 ```
 
-### async, promises, observables
+# async, promises, observables
 
 criar o modal de escolha de possibilidades:
 `ng g component async/possibilities`
@@ -236,7 +236,7 @@ adicionar na lista de entryComponents no AppModule:
 entryComponents: [PossibilitiesComponent]
 ```
 
-### Criar um spinner, usaremos bastante
+# Criar um spinner, usaremos bastante
 
 `npx ng g shared/components/spinner`
 
@@ -424,7 +424,7 @@ export class SpinnerComponent implements OnInit {
 
 Referência: _https://christianlydemann.com/four-ways-to-create-loading-spinners-in-an-angular-app/_
 
-### Explorando callbacks, modais, requisicões e fluxo assícrono
+# Explorando callbacks, modais, requisicões e fluxo assícrono
 
 Criar componentes:
 
@@ -800,7 +800,9 @@ e
 
 Atentar para os status de erro, de loading e para a dependência entre callbacks.
 
-### Usando Promises
+# Usando Promises
+
+# Usando Observables
 
 - fake ftd callback
   - read barcode
@@ -811,12 +813,168 @@ Atentar para os status de erro, de loading e para a dependência entre callbacks
 - fake ftd promise
 - fake ftd observable
 
-### API - services, models
+# API - services, models
 
-### Auth
+### Beer model
 
-### Listagem
+Model básico simples em `app/src/data/models/beer.model.ts`:
 
-### Form
+```
+interface IBeer {
+  id?: number;
+  name?: string;
+  yeast?: string;
+  imageUrl?: string;
+  abv?: number;
+  ibu?: number;
+  firstBrewed?: Date;
+}
 
-### Tratamento de erros
+export class Beer implements IBeer {
+  id: number;
+  name: string;
+  yeast: string;
+  imageUrl: string;
+  abv: number;
+  ibu: number;
+  firstBrewed: Date;
+
+  constructor(props: IBeer) {
+    Object.keys(props).forEach(key => (this[key] = props[key]));
+  }
+}
+```
+
+### Beer query model
+
+Adicionar a interface e a classe ao arquivo de model de beer:
+
+```
+interface IBeerQuery {
+  abvGt?: number;
+  abvLt?: number;
+  ibuGt?: number;
+  ibuLt?: number;
+  beerName?: string;
+  brewedBefore?: Date;
+  brewedAfter?: Date;
+}
+
+export class BeerQuery {
+  abvGt: number;
+  abvLt: number;
+  ibuGt: number;
+  ibuLt: number;
+  beerName: string;
+  brewedBefore: Date;
+  brewedAfter: Date;
+
+  constructor(props: IBeerQuery) {
+    Object.keys(props).forEach(key => (this[key] = props[key]));
+  }
+
+  composeHttpParams(httpParams: HttpParams): HttpParams {
+    if (this.abvGt != null) httpParams = httpParams.set('abvGt', this.abvGt.toString());
+    if (this.abvLt != null) httpParams = httpParams.set('abvLt', this.abvLt.toString());
+    if (this.ibuGt != null) httpParams = httpParams.set('ibuGt', this.ibuGt.toString());
+    if (this.ibuLt != null) httpParams = httpParams.set('ibuLt', this.ibuLt.toString());
+    if (this.beerName != null) httpParams = httpParams.set('beerName', this.beerName);
+    if (this.brewedBefore != null) httpParams = httpParams.set('brewedBefore', this.brewedBefore.toString());
+    if (this.brewedAfter != null) httpParams = httpParams.set('brewedAfter', this.brewedAfter.toString());
+
+    return httpParams;
+  }
+}
+```
+
+### Beer decoder
+
+Adicionar um método estático ao model de Beer:
+
+```
+static decode(obj: any): Beer {
+    const props: IBeer = {};
+
+    if (typeof obj['id'] === 'number') props.id = obj['id'];
+    if (typeof obj['name'] === 'string') props.name = obj['name'];
+    if (typeof obj['yeast'] === 'string') props.yeast = obj['yeast'];
+    if (typeof obj['imageUrl'] === 'string') props.imageUrl = obj['image_url'];
+    if (typeof obj['abv'] === 'number') props.abv = obj['abv'];
+    if (typeof obj['ibu'] === 'number') props.ibu = obj['ibu'];
+    if (typeof obj['firstBrewed'] === 'number') props.firstBrewed = new Date();
+
+    return new Beer(props);
+  }
+```
+
+### Beer service
+
+`npx ng g service data/services/beer`
+
+Servico simples somente com método de index sem tratamento de erros:
+
+```
+import { Injectable } from '@angular/core';
+import { BeerQuery, Beer } from '../models/beer.model';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class BeerService {
+  constructor(private http: HttpClient) {}
+
+  index(query: BeerQuery): Observable<Beer[]> {
+    return this.http
+      .get('https://api.punkapi.com/v2/beers', {
+        params: query.composeHttpParams(new HttpParams())
+      })
+      .pipe(
+        map((data: any) => {
+          if (Array.isArray(data)) {
+            return data.map(Beer.decode);
+          } else {
+            return [];
+          }
+        })
+      );
+  }
+}
+
+```
+
+# Auth
+
+### Login
+
+### LocalStorage
+
+### /self
+
+### Guard
+
+### Interceptor
+
+# Form
+
+### Template-driven
+
+### Reactive-form
+
+### FaaS
+
+### Forms everywhere!
+
+# Listagem
+
+### Usando o query model
+
+### Mostrando o resultado
+
+### Servico de Paginacão
+
+### Form no modal
+
+# Tratamento de erros
