@@ -63,7 +63,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     // helper functions
 
     function ok(body?) {
-      return of(new HttpResponse({ status: 200, body }));
+      return of(new HttpResponse({ status: 200, body })).pipe(delay(2000));
     }
 
     function unauthorized() {

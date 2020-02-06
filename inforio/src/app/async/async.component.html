@@ -9,3 +9,4 @@
 <ngb-alert *ngIf="devolutionRequestError" type="danger" (close)="devolutionRequestError = false"
   >Erro ao devolver livros</ngb-alert
 >
+<app-spinner *ngIf="busy"></app-spinner>

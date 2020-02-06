@@ -18,6 +18,8 @@ export class AsyncComponent implements OnInit {
   devolutionRequestError = false;
   devolutionRequestSuccess = false;
 
+  busy = false;
+
   constructor(private modalService: NgbModal, private http: HttpClient) {}
 
   ngOnInit() {}
@@ -27,6 +29,7 @@ export class AsyncComponent implements OnInit {
     const barcodeComponent: BarcodeComponent = barcodeModalRef.componentInstance;
     barcodeComponent.callback = (barcode: string) => {
       if (barcode != null) {
+        this.busy = true;
         this.http.get(`test.com/books/possibilities?barcode=${this.barcode}`).subscribe(
           response => {
             const books = response['data'];
@@ -48,6 +51,7 @@ export class AsyncComponent implements OnInit {
                     confirmationComponent.callback = (confirmation: boolean) => {
                       console.log('callback confirmation', confirmation);
                       if (confirmation) {
+                        this.busy = true;
                         this.http
                           .post(`test.com/books/${book.id}/devolution`, {
                             amount
@@ -60,12 +64,14 @@ export class AsyncComponent implements OnInit {
                             error => {
                               this.devolutionRequestError = true;
                               setTimeout(_ => (this.devolutionRequestError = false), 5000);
-                            }
+                            },
+                            () => (this.busy = false)
                           );
                       }
                     };
                   } else if (amount > 0) {
                     console.log('amount:', amount);
+                    this.busy = true;
                     this.http
                       .post(`test.com/books/${book.id}/devolution`, {
                         amount
@@ -78,7 +84,8 @@ export class AsyncComponent implements OnInit {
                         error => {
                           this.devolutionRequestError = true;
                           setTimeout(_ => (this.devolutionRequestError = false), 5000);
-                        }
+                        },
+                        () => (this.busy = false)
                       );
                   }
                 };
@@ -88,7 +95,8 @@ export class AsyncComponent implements OnInit {
           error => {
             this.barcodeRequestError = true;
             setTimeout(_ => (this.barcodeRequestError = false), 5000);
-          }
+          },
+          () => (this.busy = false)
         );
       }
     };

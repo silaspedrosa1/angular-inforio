@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AmountComponent } from './async/amount/amount.component';
 import { ConfirmationComponent } from './async/confirmation/confirmation.component';
 import { BarcodeComponent } from './async/barcode/barcode.component';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BarcodeComponent } from './async/barcode/barcode.component';
     PossibilitiesComponent,
     AmountComponent,
     ConfirmationComponent,
-    BarcodeComponent
+    BarcodeComponent,
+    SpinnerComponent
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
   providers: [fakeBackendProvider],
