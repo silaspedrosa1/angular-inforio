@@ -8,7 +8,7 @@ import {
   HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
-import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
+import { delay, mergeMap, materialize, dematerialize, switchMap } from 'rxjs/operators';
 
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
@@ -31,6 +31,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return booksPossibilities();
         case url.endsWith('/devolution') && method === 'POST':
           return devolution();
+        // case url.endsWith('v2/beers'):
+        //   return beersList();
         default:
           // pass through any requests not handled above
           return next.handle(request);
@@ -38,6 +40,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 
     // route functions
+    function beersList() {
+      return of(null).pipe(
+        delay(2000),
+        switchMap(_ => error('aaaa'))
+      );
+    }
 
     function devolution() {
       return ok({});

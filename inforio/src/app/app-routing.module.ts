@@ -1,19 +1,23 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { HomeComponent } from "./home/home.component";
-import { AsyncComponent } from "./async/async.component";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { AsyncComponent } from './async/async.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     children: [
       {
-        path: "",
+        path: '',
         component: HomeComponent
       },
       {
-        path: "async",
+        path: 'async',
         component: AsyncComponent
+      },
+      {
+        path: 'lazy',
+        loadChildren: './lazy/lazy.module#LazyModule'
       }
     ]
   }

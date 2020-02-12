@@ -14,6 +14,7 @@ import { AmountComponent } from './async/amount/amount.component';
 import { ConfirmationComponent } from './async/confirmation/confirmation.component';
 import { BarcodeComponent } from './async/barcode/barcode.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
     BarcodeComponent,
     SpinnerComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule, FormsModule],
   providers: [fakeBackendProvider],
   bootstrap: [AppComponent],
   entryComponents: [PossibilitiesComponent, BarcodeComponent, AmountComponent, ConfirmationComponent]

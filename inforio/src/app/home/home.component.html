@@ -1,2 +1,21 @@
 <p>home works!</p>
-<a routerLink="/async">async</a>
+<h1 routerLink="/lazy">Ir para lazy</h1>
+<!-- <a routerLink="/async">async</a> -->
+<h1 *ngIf="beerList.temErro">EEEERRoOOOO</h1>
+
+<app-spinner *ngIf="beerList.emProgresso"></app-spinner>
+
+<ng-container *ngIf="beerList.foiSucesso">
+  <button (click)="voltar()">Anterior</button>
+  <span>{{ query.page }}</span>
+  <button (click)="avancar()">Próximo</button>
+  <div class="container mb-2 mt-2">
+    <div class="row">
+      abv_gt:
+      <input type="number" [(ngModel)]="query.abvGt" (ngModelChange)="refresh()" />
+    </div>
+  </div>
+  <ul *ngFor="let beer of beerList.resultado">
+    <li>{{ beer.name }}</li>
+  </ul>
+</ng-container>
